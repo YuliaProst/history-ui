@@ -1,8 +1,11 @@
 import * as React from 'react';
 import {useState} from 'react';
 
+import {Grid} from '@mui/material';
+
 import {UploadTable} from './UploadTable/UploadTable';
-import {uploadTableApi} from './UploadTable/UploadTable.api';
+import {TreeInterface, uploadTableApi} from './UploadTable/UploadTable.api';
+import {Graph} from './Graph/Graph';
 
 export const OriginHistory = () => {
 
@@ -10,7 +13,9 @@ export const OriginHistory = () => {
 	const [isError, setIsError] = useState<boolean>(false);
 	const [isSuccessLoaded, setIsSuccessLoaded] = useState<boolean>(false);
 
-	const [tableData, setTableData] = useState();
+	const [tableData, setTableData] = useState<TreeInterface>({
+		id: '$', children: []
+	});
 
 	const onUploadTable = async (file: File) => {
 		setIsLoading(true);
@@ -19,7 +24,10 @@ export const OriginHistory = () => {
 		try {
 			const bodyFormData = new FormData();
 			bodyFormData.append('dict', file);
-			setTableData(await uploadTableApi.uploadTable(bodyFormData));
+			setTableData({
+				id: '$',
+				children: await uploadTableApi.uploadTable(bodyFormData)
+			});
 			setIsSuccessLoaded(true);
 		} catch {
 			setIsError(true);
@@ -28,5 +36,12 @@ export const OriginHistory = () => {
 		}
 	};
 
-	return <UploadTable onSaveDoc={onUploadTable} isError={isError} isLoading={isLoading} isSuccessLoaded={isSuccessLoaded} />;
+	return <Grid container direction={'column'} spacing={3}>
+		<Grid item xs={3} spacing={3}>
+			<UploadTable onSaveDoc={onUploadTable} isError={isError} isLoading={isLoading} isSuccessLoaded={isSuccessLoaded} />;
+		</Grid>
+		<Grid item>
+			<Graph treeData={tableData} width={1000} height={600}/>
+		</Grid>
+	</Grid>;
 };

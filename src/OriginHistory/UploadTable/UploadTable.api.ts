@@ -1,4 +1,10 @@
-import { axiosInstance } from '../../axiosInstance/axiosInstance';
+import {axiosInstance} from '../../axiosInstance/axiosInstance';
+
+export interface TreeInterface {
+	id: string;
+	children?: TreeInterface[];
+	groups?: string[];
+}
 
 export const uploadTableApi = {
 	uploadTable(bodyFormData: FormData) {
@@ -6,6 +12,6 @@ export const uploadTableApi = {
 			method: 'post',
 			data: bodyFormData,
 			headers: {'Content-Type': 'multipart/form-data' }
-		}).then((res: { data: any; }) => res.data);
+		}).then((res: { data: TreeInterface[] }) => res.data);
 	},
 };
