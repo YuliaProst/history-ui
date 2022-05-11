@@ -32,8 +32,9 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "@emotion/react": "^11.8.1",
+    "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.4.3",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
@@ -41,6 +42,8 @@
     "@visx/mock-data": "^2.1.2",
     "@visx/scale": "^2.2.2",
     "@visx/shape": "^2.4.0",
-    "react": "^17.0.2"
+    "axios": "^0.27.2",
+    "react": "^17.0.2",
+    "react-dropzone": "^14.2.1"
   }
 }
