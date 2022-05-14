@@ -131,7 +131,9 @@ function RootNode({ node }: { node: HierarchyPointNode<TreeInterface> }) {
 
 	return (
 		<Group top={node.y} left={node.x}>
-			<rect width={width} height={height} y={centerY} x={centerX} fill="url('#top')" />
+			<rect width={width} height={height} y={centerY} x={centerX} fill="url('#top')" onClick={() => {
+				alert(`${JSON.stringify(node.data)}`);
+			}} />
 			<text
 				dy=".33em"
 				fontSize={9}

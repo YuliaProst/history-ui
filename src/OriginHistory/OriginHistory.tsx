@@ -13,9 +13,7 @@ export const OriginHistory = () => {
 	const [isError, setIsError] = useState<boolean>(false);
 	const [isSuccessLoaded, setIsSuccessLoaded] = useState<boolean>(false);
 
-	const [tableData, setTableData] = useState<TreeInterface>({
-		id: '$', children: []
-	});
+	const [tableData, setTableData] = useState<TreeInterface>();
 
 	const onUploadTable = async (file: File) => {
 		setIsLoading(true);
@@ -40,8 +38,8 @@ export const OriginHistory = () => {
 		<Grid item xs={3} spacing={3}>
 			<UploadTable onSaveDoc={onUploadTable} isError={isError} isLoading={isLoading} isSuccessLoaded={isSuccessLoaded} />;
 		</Grid>
-		<Grid item>
+		{tableData && <Grid item>
 			<Graph treeData={tableData} width={1000} height={600}/>
-		</Grid>
+		</Grid>}
 	</Grid>;
 };
