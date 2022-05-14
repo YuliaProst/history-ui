@@ -35,6 +35,6 @@ export const uploadTableApi = {
 			method: 'post',
 			data: bodyFormData,
 			headers: {'Content-Type': 'multipart/form-data' }
-		}).then((res: { data: TreeInterface[] }) => mockData);
+		}).then((res: { data: TreeInterface[] }) => res.data);
 	},
 };

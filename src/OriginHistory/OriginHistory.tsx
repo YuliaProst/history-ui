@@ -23,7 +23,7 @@ export const OriginHistory = () => {
 			const bodyFormData = new FormData();
 			bodyFormData.append('dict', file);
 			setTableData({
-				id: '$',
+				id: 'Сол-803',
 				children: await uploadTableApi.uploadTable(bodyFormData)
 			});
 			setIsSuccessLoaded(true);
